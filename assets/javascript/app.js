@@ -16,15 +16,18 @@ $(document).ready(function () {
     var userId = "";
     var height = "";
     var userWeight = "";
+    var userGender = "";
     var userAge = "";
     var workOut = "";
 
     $("#addUser").on("click", function (event) {
         event.preventDefault();
 
-        var userId = $("#nameInput").val().trim();
+        var userId = $("#emailInput").val().trim();
+        var userName = $("#nameInput").val().trim();
         var userHeight = $("#heightInput").val().trim();
         var userWeight = $("#weightInput").val().trim();
+        var userGender = $("#genderInput").val().trim();
         var userAge = $("#ageInput").val().trim();
         var workOut = $("#wkInput").val().trim();
 
@@ -34,25 +37,35 @@ $(document).ready(function () {
             height: userHeight,
             weight: userWeight,
             age: userAge,
+            gender: userGender,
             workOutRoutine: workOut,
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         };
-        
+
         dataRef.ref().push(newUser);
 
         console.log(newUser.name);
         console.log(newUser.height);
         console.log(newUser.weight);
+        console.log(newUser.gender);
         console.log(newUser.age);
         console.log(newUser.workOutRoutine);
-    })
 
-    $("#nameInput").val("");
-    $("#heightInput").val("");
-    $("#weightInput").val("");
-    $("#ageInput").val("");
-    $("#wkInput").val("");
+        $("#nameInput").val("");
+        $("#heightInput").val("");
+        $("#weightInput").val("");
+        $("#genderInput").val("");
+        $("#ageInput").val("");
+        $("#wkInput").val("");
 
+    });
+
+    function login() {
+
+
+
+
+    };
 
 
 
