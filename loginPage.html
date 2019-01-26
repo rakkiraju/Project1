@@ -11,7 +11,7 @@
     <!--Jquery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!--CSS Library-->
-<link rel="stylesheet" type="text/css" href=".....">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
   <!-- Link to Moment.js-->
   <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
@@ -26,7 +26,7 @@
           <body>
             <div class="card">
 
-
+                            <!--TABS CONTENT -->
                         <table class="table">
                     <thead>
                       <tr>
@@ -35,34 +35,57 @@
                         <th id="WeeklyResults" scope="col">Weekly Results</th>
                     </thead>
                 </table>
-
+                          <!--USER INFORMATION-->
                 <div class="card-body">
                     <h1>Main Information</h1>
 
+                    <!--NAME-->
                     <div class="form-group">
-                        <label for="UserId">User Information</label>
-                        <input id="UserId" type="user" class="form-control" placeholder="First Name, Last Name ">
-                      
+                        <label for="user-id">User Information</label>
+                        <input id="user-id" type="name" class="form-control" placeholder="First Name, Last Name ">
                       </div>
-
+                      <!--AGE-->
                       <div class="form-group">
-                        <label for="UserId">User Information</label>
-                        <input id="UserId" type="user" class="form-control" placeholder="First Name, Last Name ">
-                      
+                        <label for="user-age">Age</label>
+                        <input id="User-age" type="user" class="form-control" placeholder="23">
                       </div>
+                      <!--GENDER-->
+                        <div class="form-group">
+                          <label for="user-gender">Gender</label>
+                          <br>
+                          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary active">
+                              <input type="radio" name="female" id="female" autocomplete="off" checked> Female
+                            </label>
+                            <label class="btn btn-secondary">
+                              <input type="radio" name="male" id="male" autocomplete="off"> Male
+                            </label>
+                          </div>
+                        </div>
+                      
+                        <!--WHEIGHT-->
+                        <div class="form-group">
+                          <label for="user-gender">Weight</label>
+                          <br>
+                          <input type="text" name="cheightfeet" id="cheightfeet" placeholder="5" class="inhalf inuifoot">
+                          <span class="inuifootspan">feet </span>
+                        <br>
+                          <input type="text" name="cheightinch" id="cheightinch" placeholder="10" class="inhalf inuiinch">
+                          <span class="inuiinchspan">inches</span>
+
+           
 
                     
      
-                   </div>
-<br>
+                  
 
 </div>
                   
-
-<script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+<!--Fire basw-->
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
 
     <!-- Optional JavaScript -->
-<script type="text/javascript" src="assets/javascript/script.js"></script>
+<script type="text/javascript" src="assets/javascript/app.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
