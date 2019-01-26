@@ -42,24 +42,26 @@
                     <!--USER ID-->
                  
                     <!--NAME-->
+
                     <div class="form-group">
-                        <label for="user-name">Name</label>
-                        <input id="user-name" type="name" class="form-control" placeholder="First Name, Last Name ">
+                      <label for="userId">User ID / Email address</label>
+                      <input type="email" class="form-control" id="userId" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input id="name" type="name" class="form-control" placeholder="First Name, Last Name ">
                       </div>
 
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                      </div>
-  
                       <!--AGE-->
                       <div class="form-group">
-                        <label for="user-age">Age</label>
-                        <input id="User-age" type="user" class="form-control" placeholder="23">
+                        <label for="age">Age</label>
+                        <input id="age" type="variable" class="form-control" placeholder="23">
                       </div>
+
                       <!--GENDER-->
                         <div class="form-group">
-                          <label for="user-gender">Gender</label>
+                          <label for="gender">Gender</label>
                           <br>
                           <div class="btn-group btn-group-toggle" data-toggle="buttons">
                             <label class="btn btn-secondary active">
@@ -73,15 +75,38 @@
                       
                         <!--HEIGHT-->
                         <div class="form-group">
-                          <label for="user-gender">Height</label>
+                          <label for="height">Height</label>
                           <br>
                           <input type="text" name="cheightfeet" id="cheightfeet" placeholder="5" class="inhalf inuifoot">
                           <span class="inuifootspan">feet </span>
                         <br>
                           <input type="text" name="cheightinch" id="cheightinch" placeholder="10" class="inhalf inuiinch">
                           <span class="inuiinchspan">inches</span>
+                          <br>
+                          </div>
+                      <!--WEIGHT-->
 
-                  
+                      <div class="form-group">
+                      <label for="weight">Weight</label>
+                      <br>
+                      <input type="variable" name="cpound" id="weight" placeholder="150"  class="infull inuipound" >
+                      <span class="inuilbspan">lb</span>
+                        </div>
+                <!--WORKOUT ROUTINE-->
+                <div class="form-group">
+                  <label for="activity">Activity</label>
+                  <br>
+                        <select id="cactivity" name="cactivity">
+                          <option value="1.375">Light: exercise 1-3 times/week</option>
+                          <option value="1.465" selected="">Moderate:  daily exercise or intense exercise 3-4 times/week</option>
+                          <option value="1.725">Active: intense exercise 6-7 times/week</option>
+                        </select>
+                      </div>
+
+                  <br>
+                  <br>
+                  <!--Submit Info-->
+                  <button type="button" class="btn btn-outline-success">Submit Info</button>
 
 
           
