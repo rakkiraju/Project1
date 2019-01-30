@@ -6,7 +6,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=KoHo" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=KoHo|Old+Standard+TT" rel="stylesheet">
+
+    
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -33,22 +36,22 @@
                           
                     <thead>
                       <tr>
-                     
-                        <th id="weeklyJournal"  scope="col">Weekly Journal</th>
-                        <th id="weeklyGoal" scope="col">Weekly Goal</th>
+                        <th id="weeklyJournal"  scope="col" href="">Weekly Journal</th>
+                        <th id="weeklyGoal" scope="col" ><a href="weeklyGoal.html">Weekly Goal</a></th>
                         <th id="WeeklyResults" scope="col">Weekly Results</th>
                     </thead>
 
                 </table>
                           <!--USER INFORMATION-->
                 <div class="card-body">
-                    <h1>Main Information</h1>
+                    <h1 id="main-info">Main Information</h1>
+                    <br>
 
                     <!--USER ID-->
                  
                     <!--NAME-->
 
-                    <div class="form-group">
+                    <div class="form-group" id="user-form">
                       <label for="userId">User ID / Email address</label>
                       <input type="email" class="form-control" id="userId" aria-describedby="emailHelp" placeholder="Enter email">
                     </div>

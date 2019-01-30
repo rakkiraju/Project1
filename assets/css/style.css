@@ -1,3 +1,11 @@
 .card {
-    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'KoHo', sans-serif; */
+    font-family: 'Old Standard TT', serif;
+    margin-top:10px;
+}
+.table{
+    text-align: center;
+}
+#main-info{
+    text-align: center;
 }
