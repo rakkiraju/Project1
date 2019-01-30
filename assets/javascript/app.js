@@ -10,6 +10,7 @@ $(document).ready(function () {
     };
 
     firebase.initializeApp(config);
+    // console.log(firebase.database.ref())
 
     var dataRef = firebase.database();
 
@@ -60,13 +61,10 @@ $(document).ready(function () {
 
     });
 
-    function login() {
 
 
 
 
-    };
 
 
-
-})
+});
