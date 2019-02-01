@@ -15,9 +15,9 @@
     <!--CSS Library-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-    <!-- Link to Moment.js-->
-    <!-- <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script> -->
-
+    <!-- Link to chart.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    
     <!-- Link to Fun fonts-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
         crossorigin="anonymous">
@@ -122,9 +122,9 @@
 
                             <th scope="col">Carbs</th>
 
-                            <th scope="col">Proteins</th>
-
                             <th scope="col">Sugars</th>
+
+                            <th scope="col">Proteins</th>
 
                         </tr>
                     </thead>
@@ -144,6 +144,12 @@
     <div class="container border">
 
         <h3 id="chart-result">Chart Result</h3>
+        <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
+
+        <!-- <canvas id="pie-chart" width="800" height="450"></canvas> -->
+        <!-- <canvas id="pie-chart-sugars" width="800" height="450"></canvas> -->
+        <!-- <canvas id="pie-chart-protein" width="800" height="450"></canvas> -->
+
 
 
     </div>
