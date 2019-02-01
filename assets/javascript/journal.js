@@ -1,8 +1,19 @@
 $(document).ready(function(){
-console.log("ready");
+//console.log("ready");
 var mealTime = "";
 var dayChosen = "";
 var key=localStorage.getItem("app-userID");
+var iCarbsTotal = 0;
+var iSugarsTotal = 0;
+var iProteinTotal = 0;
+var bWentIn = false;
+var iCarbs = 0;
+var iProtein = 0;
+var iSugars = 0;
+var iTempCarbsTotal  = 0;
+var iTempSugarsTotal  = 0;
+var iTempProteinTotal  = 0;
+var cBarChart;
 
 var config = {
     apiKey: "AIzaSyDG1lEd_nZKUJ_FmKSkn0CaH0jYO0tOdbE",
@@ -18,6 +29,8 @@ firebase.initializeApp(config);
 var dataRef = firebase.database();
 
 dataRef.ref("dailyItems").on("child_added", function(snapshot) {
+    //delete the Totals TR
+    $("#totalsRow").remove();
     var DBkey = snapshot.val().key;
     if(DBkey == key)
     {
@@ -27,30 +40,33 @@ dataRef.ref("dailyItems").on("child_added", function(snapshot) {
         var carbs = snapshot.val().carbs;
         var protein = snapshot.val().protein;
         var sugar = snapshot.val().sugar;
-    
+        
+        bWentIn  = true;
         var newRow = $('<tr>').append(
             $("<td>").text(food),
             $("<td>").text(day),
             $("<td>").text(meal),
             $("<td>").text(carbs + " grams"),
-            $("<td>").text(protein + " grams"),
-            $("<td>").text(sugar + " grams")
-
-
+            $("<td>").text(sugar + " grams"),
+            $("<td>").text(protein + " grams")          
         );
 
         $("#journalTable").append(newRow);
+        //console.log("iCarbs is " + iCarbs);
+        cBarChart.data.datasets[0].data = [$("#myTable1 #Carbs2").text(), $("#myTable1 #sugar2").text(), $("#myTable1 #protein2").text()];
+        cBarChart.update();
     }
 }, function(errorObject) {
     console.log("The read failed: " + errorObject.code);
 });
+
 
 $(document).on("click", ".addFood", function () {
 
     event.preventDefault();
 
     var food = $(".foodInput").val().trim();
-    console.log(food);
+    //console.log(food);
     // localStorage.setItem("Food-Item", food);
 
     var queryURL = "https://trackapi.nutritionix.com/v2/natural/nutrients"
@@ -72,9 +88,9 @@ $(document).on("click", ".addFood", function () {
 
     })
         .then(function (response) {
-            console.log(response);
+            //console.log(response);
             var results = response.foods;
-            console.log(results);
+            //console.log(results);
 
             var day = dayChosen;
             var meal = mealTime;
@@ -102,37 +118,125 @@ $(document).on("click", ".addFood", function () {
 
     $("select.meal").on('change', function () {
         mealTime = $(this).children("option:selected").val();
-        console.log(mealTime);
+        //console.log(mealTime);
     });
 
     $("select.day").on('change', function () {
         dayChosen = $(this).children("option:selected").val();
-        console.log(dayChosen);
+        //console.log(dayChosen);
     });
     // var myUserId = localStorage.getItem("app-userID");
     var wsRef = dataRef.ref("weeklyStandards");
     wsRef.orderByValue().on("value", function(snapshot) {
         snapshot.forEach(function(data) {
-            console.log("The DB value is " + data.val().key);
+            //console.log("The DB value is " + data.val().key);
             if(data.val().key == key)
             {
                 var carbs1Val = $("#myTable1 #carbs1").text();
                 var carbs = data.val().carbs;
-                var iCarbs = Math.ceil(parseInt(carbs));
+                iCarbs = Math.ceil(parseInt(carbs));
                 var protein = data.val().protein;
-                var iProtein = Math.ceil(parseInt(protein));
+                iProtein = Math.ceil(parseInt(protein));
                 var sugars = data.val().sugars;
-                var iSugars = Math.ceil(parseInt(sugars));
+                iSugars = Math.ceil(parseInt(sugars));
                 $("#myTable1 #Carbs2").text(iCarbs);
                 $("#myTable1 #sugar2").text(iSugars);
                 $("#myTable1 #protein2").text(iProtein);
+
+                //update the bar graph
+                // console.log("Calling to update graph!!!");
+                //cBarChart.clear();
+                // console.log("bbbb " + $("#myTable1 #Carbs2").text());
+
+                cBarChart.data.datasets[0].data = [$("#myTable1 #Carbs2").text(), $("#myTable1 #sugar2").text(), $("#myTable1 #protein2").text()];
+                //cBarChart.data.datasets[1].data = [iTempCarbsTotal, iTempSugarsTotal, iTempProteinTotal];
+                cBarChart.update();
  
             }
         });
  
       });
+
+      var diRef = dataRef.ref("dailyItems");
+      diRef.orderByValue().on("value", function(snapshot) {
+        iCarbsTotal = 0;
+        iSugarsTotal = 0;
+        iProteinTotal = 0;
+          snapshot.forEach(function(data) {
+              //console.log("The DB value is " + data.val().key);
+              if(data.val().key == key)
+              {
+                iCarbsTotal += data.val().carbs;
+                iSugarsTotal += data.val().sugar;
+                iProteinTotal += data.val().protein;   
+              }
+          });
+          //console.log("Came to dailyItems loop!!!");
+          if(bWentIn)
+          {
+            //parseFloat(Math.round(num3 * 100) / 100).toFixed(2);
+            var iTempCarbsTotal  = parseFloat(Math.round(iCarbsTotal * 100) / 100).toFixed(2);
+            var iTempSugarsTotal  = parseFloat(Math.round(iSugarsTotal * 100) / 100).toFixed(2);
+            var iTempProteinTotal  = parseFloat(Math.round(iProteinTotal * 100) / 100).toFixed(2);
+
+            var newTotalRow = $('<tr id="totalsRow">').append(
+                $("<td>").text(""),
+                $("<td>").text(""),
+                $("<td>").html("<b>Totals:</b>"),
+                $("<td>").html("<b>" + iTempCarbsTotal + " grams </b>"),
+                $("<td>").html("<b>" + iTempSugarsTotal + " grams </b>"),
+                $("<td>").html("<b>" + iTempProteinTotal + " grams </b>")                
+            );
+        
+                $("#journalTable").append(newTotalRow);
+                bWentIn = false;
+                console.log("iCarbs is " + iCarbs);
+
+                //cBarChart.remove();
+                cBarChart.data.datasets[1].data = [iTempCarbsTotal, iTempSugarsTotal, iTempProteinTotal];
+                cBarChart.update();
+          }
+          else
+          {
+            iCarbsTotal = 0;
+            iSugarsTotal = 0;
+            iProteinTotal = 0;
+          }
+   
+        });
       
-      
+
+        //chart functions
+        var myTempVal = 1800;
+        console.log("myTempVal is " + myTempVal);
+        //console.log("my table value is " + $("#myTable1 #Carbs2").text());
+        cBarChart = new Chart(document.getElementById("bar-chart-grouped"), {
+            type: 'bar',
+            data: {
+              labels: ["Carbs", "Sugars", "Protein"],
+              datasets: [
+                {
+                  label: "Goals",
+                  backgroundColor: "#3e95cd",
+                  data: []
+                }, {
+                  label: "Actual Consumption",
+                  backgroundColor: "#8e5ea2",
+                  data: []
+                }
+              ]
+            },
+            options: {
+              title: {
+                display: true,
+                text: 'Nutrition consumption Chart (grams)'
+              }
+            }
+        });
+
+        
 });
+
+
 
 
