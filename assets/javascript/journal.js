@@ -17,6 +17,34 @@ firebase.initializeApp(config);
 
 var dataRef = firebase.database();
 
+dataRef.ref("dailyItems").on("child_added", function(snapshot) {
+    var DBkey = snapshot.val().key;
+    if(DBkey == key)
+    {
+        var food = snapshot.val().foodItem;
+        var day = snapshot.val().day;
+        var meal = snapshot.val().meal;
+        var carbs = snapshot.val().carbs;
+        var protein = snapshot.val().protein;
+        var sugar = snapshot.val().sugar;
+    
+        var newRow = $('<tr>').append(
+            $("<td>").text(food),
+            $("<td>").text(day),
+            $("<td>").text(meal),
+            $("<td>").text(carbs + " grams"),
+            $("<td>").text(protein + " grams"),
+            $("<td>").text(sugar + " grams")
+
+
+        );
+
+        $("#journalTable").append(newRow);
+    }
+}, function(errorObject) {
+    console.log("The read failed: " + errorObject.code);
+});
+
 $(document).on("click", ".addFood", function () {
 
     event.preventDefault();
@@ -48,12 +76,6 @@ $(document).on("click", ".addFood", function () {
             var results = response.foods;
             console.log(results);
 
-
-            var foodDiv = $("<div>");
-
-            // var foodImage = $("<img>");
-            //foodImage.attr("src", results[0].photo.thumb);
-
             var day = dayChosen;
             var meal = mealTime;
             var carbs = results[0].nf_total_carbohydrate;
@@ -72,40 +94,6 @@ $(document).on("click", ".addFood", function () {
             };
 
             dataRef.ref("dailyItems").push(newItem);
-
-            // localStorage.setItem("Carbs", carbs);
-            // localStorage.setItem("Sugars", sugar);
-            // localStorage.setItem("Protein", protein);
-            // localStorage.setItem("Day_eaten", day);
-            // localStorage.setItem("Meal_time", meal);
-
-            console.log("Time eaten: " + meal);
-            console.log("Total amount of carbs: " + carbs);
-            console.log("Total amount of sugars: " + sugar);
-            console.log("Total amount of protein: " + protein);
-
-
-            // var p = $("<p>").text("Calories: " + carbs, "Sugars: " + sugar, "Protein: " + protein);
-
-            // foodDiv.prepend(p);
-            //foodDiv.prepend(foodImage);
-
-            $("#journal").prepend(foodDiv);
-            $(".foodInput").val("");
-
-
-            var newRow = $('<tr>').append(
-                $("<td>").text(food),
-                $("<td>").text(day),
-                $("<td>").text(meal),
-                $("<td>").text(carbs + " grams"),
-                $("<td>").text(protein + " grams"),
-                $("<td>").text(sugar + " grams")
-
-
-            );
-
-            $("#journalTable").append(newRow);
         })
 
 });
@@ -129,21 +117,22 @@ $(document).on("click", ".addFood", function () {
             if(data.val().key == key)
             {
                 var carbs1Val = $("#myTable1 #carbs1").text();
-               // console.log("Came here " + data.val().key + " " + myUserId + "A" + carbs1Val + "B");
                 var carbs = data.val().carbs;
                 var iCarbs = Math.ceil(parseInt(carbs));
                 var protein = data.val().protein;
                 var iProtein = Math.ceil(parseInt(protein));
                 var sugars = data.val().sugars;
                 var iSugars = Math.ceil(parseInt(sugars));
-                $("#myTable1 #carbs2").text(iCarbs);
+                $("#myTable1 #Carbs2").text(iCarbs);
                 $("#myTable1 #sugar2").text(iSugars);
                 $("#myTable1 #protein2").text(iProtein);
  
             }
-        //   console.log("The " + data.key + "  " + data.val().name + "---" + data.val().start);
         });
  
       });
-
+      
+      
 });
+
+
