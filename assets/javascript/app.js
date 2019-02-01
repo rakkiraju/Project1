@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    // console.log("this is " + $(this));
 
     var config = {
         apiKey: "AIzaSyDG1lEd_nZKUJ_FmKSkn0CaH0jYO0tOdbE",
@@ -25,18 +26,20 @@ $(document).ready(function () {
         console.log("Came here!!!!");
         event.preventDefault();
 
+        //store the userID
         var userId = $("#userId").val();
+        localStorage.setItem("app-userID", userId);
+
         // console.log(userId);
         var userName = $("#name").val();
         var userHeightFt = $("#cheightfeet").val();
         var userHeightIn = $("#cheightinch").val();
         var userHeight = (parseInt(userHeightFt) * 12 ) + parseInt( userHeightIn);
         var userWeight = $("#weight").val();
-        // is female?
         var userGender = "";
         var radioVal = document.getElementsByName('gender');
 
-        console.log("radio button lengths are " + radioVal.length);
+        // console.log("radio button lengths are " + radioVal.length);
 
         for (var i = 0, length = radioVal.length; i < length; i++)
         {
@@ -90,6 +93,12 @@ $(document).ready(function () {
         //formulae = 45% of weekly calorie intake
         var iWeeklyCarbs = .45 * iWeeklyCalories;
 
+        var weeklyStandards = {
+            key: userId,
+            carbs: (iWeeklyCarbs * 7),
+            sugars: (iweeklySugars * 7),
+            protein: (iweeklyProtein * 7)
+        }
         
 
         var newUser = {
@@ -100,33 +109,46 @@ $(document).ready(function () {
             age: userAge,
             gender: userGender,
             key: userId,
-            carbs: (iWeeklyCarbs * 7),
-            sugars: (iweeklySugars * 7),
-            protein: (iweeklyProtein * 7),
             dateAdded: firebase.database.ServerValue.TIMESTAMP
         };
 
-        console.log(newUser.name);
-        console.log(newUser.height);
-        console.log(newUser.weight);
-        console.log(newUser.gender);
-        console.log(newUser.age);
-        console.log(newUser.key);
+        //add user data to userData table
+        dataRef.ref("userData").push(newUser);
 
-        dataRef.ref().push(newUser);
+        //add weekly intake standards to weeklyStandards table
+        dataRef.ref("weeklyStandards").push(weeklyStandards);
 
-        
-        // console.log(newUser.workOutRoutine);
-
+        //launch the weeklyGoal.html
+        //window.location.href = "weeklyGoal.html";
     });
 
-    function login() {
-
-
-
-
-    };
-
+    //get the db values to populate the table
+    console.log("Came to app.js !!!!");
+    var myUserId = localStorage.getItem("app-userID");
+    console.log("my userID from LocalStorage is " + myUserId);
+    var wsRef = dataRef.ref("weeklyStandards");
+    wsRef.orderByValue().on("value", function(snapshot) {
+        snapshot.forEach(function(data) {
+            console.log("The DB value is " + data.val().key);
+            if(data.val().key == myUserId)
+            {
+                var carbs1Val = $("#myTable1 #carbs1").text();
+                console.log("Came here " + data.val().key + " " + myUserId + "A" + carbs1Val + "B");
+                var carbs = data.val().carbs;
+                var iCarbs = Math.ceil(parseInt(carbs));
+                var protein = data.val().protein;
+                var iProtein = Math.ceil(parseInt(protein));
+                var sugars = data.val().sugars;
+                var iSugars = Math.ceil(parseInt(sugars));
+                $("#myTable1 #carbs1").text(iCarbs);
+                $("#myTable1 #sugar1").text(iSugars);
+                $("#myTable1 #protein1").text(iProtein);
+                
+            }
+        //   console.log("The " + data.key + "  " + data.val().name + "---" + data.val().start);
+        });
+        
+      });
 
 
 })
