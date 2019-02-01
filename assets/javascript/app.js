@@ -62,7 +62,7 @@ $(document).ready(function () {
 
         // calculate recomended weekly sugars intake
         //formaule is based on AHA standards -> 37.58g (Men) 25g (Female)
-
+        //http://sugarscience.ucsf.edu/the-growing-concern-of-overconsumption.html#.XFRb789Kh24
         
         //formulae for calorie intake is -> 
         //Revised Harris-Benedict Equation: (source -> https://www.calculator.net/calorie-calculator.html)
@@ -80,12 +80,12 @@ $(document).ready(function () {
         var iWeeklyCalories = 0;
         if(userGender === "male")
         {
-            iweeklySugars = 37.58 * 7;
+            iweeklySugars = 37.58;
             iWeeklyCalories = (13.397 * (userWeight/2.205)) + (4.799 * (2.54 * userHeight)) - (5.677 * userAge) + 88.362;
         }
         else
         {
-            iweeklySugars = 25 * 7;
+            iweeklySugars = 25;
             iWeeklyCalories = (9.24 * (userWeight/2.205)) + (3.098 * (2.54 * userHeight)) - (4.330 * userAge) + 447.593;
         }
 
@@ -118,8 +118,8 @@ $(document).ready(function () {
         //add weekly intake standards to weeklyStandards table
         dataRef.ref("weeklyStandards").push(weeklyStandards);
 
-        //launch the weeklyGoal.html
-        //window.location.href = "weeklyGoal.html";
+        //launch the journal.html
+        window.location.href = "journal.html";
     });
 
     //get the db values to populate the table
@@ -140,9 +140,9 @@ $(document).ready(function () {
                 var iProtein = Math.ceil(parseInt(protein));
                 var sugars = data.val().sugars;
                 var iSugars = Math.ceil(parseInt(sugars));
-                $("#myTable1 #carbs1").text(iCarbs);
-                $("#myTable1 #sugar1").text(iSugars);
-                $("#myTable1 #protein1").text(iProtein);
+                $("#myTable1 #carbs2").text(iCarbs);
+                $("#myTable1 #sugar2").text(iSugars);
+                $("#myTable1 #protein2").text(iProtein);
                 
             }
         //   console.log("The " + data.key + "  " + data.val().name + "---" + data.val().start);
