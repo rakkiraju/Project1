@@ -1,11 +1,52 @@
+
+#journal{
+    text-align: center;
+}
+#goal{
+    text-align: center;
+}
+
+#meal-record{
+    text-align: center;
+}
+
+#chart-result{
+    text-align: center;
+}
+/* General */
 .card {
     /* font-family: 'KoHo', sans-serif; */
     font-family: 'Old Standard TT', serif;
     margin-top:10px;
 }
+
+/* Login Page Css */
+
 .table{
     text-align: center;
+
 }
 #main-info{
     text-align: center;
+}
+/* visited link */
+a:visited {
+    color: grey;
+    
+  }
+
+  .nav{
+      text: 30px;
+  }
+
+#weekly-goal{
+    border-style: solid;
+    border: black;
+    border-width: 3px;
+}
+
+.border{
+    border-style: solid;
+    border: black;
+    border-width: 3px;
 }
