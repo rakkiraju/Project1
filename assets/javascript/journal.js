@@ -121,6 +121,29 @@ $(document).on("click", ".addFood", function () {
         dayChosen = $(this).children("option:selected").val();
         console.log(dayChosen);
     });
-
+    // var myUserId = localStorage.getItem("app-userID");
+    var wsRef = dataRef.ref("weeklyStandards");
+    wsRef.orderByValue().on("value", function(snapshot) {
+        snapshot.forEach(function(data) {
+            console.log("The DB value is " + data.val().key);
+            if(data.val().key == key)
+            {
+                var carbs1Val = $("#myTable1 #carbs1").text();
+               // console.log("Came here " + data.val().key + " " + myUserId + "A" + carbs1Val + "B");
+                var carbs = data.val().carbs;
+                var iCarbs = Math.ceil(parseInt(carbs));
+                var protein = data.val().protein;
+                var iProtein = Math.ceil(parseInt(protein));
+                var sugars = data.val().sugars;
+                var iSugars = Math.ceil(parseInt(sugars));
+                $("#myTable1 #carbs2").text(iCarbs);
+                $("#myTable1 #sugar2").text(iSugars);
+                $("#myTable1 #protein2").text(iProtein);
+ 
+            }
+        //   console.log("The " + data.key + "  " + data.val().name + "---" + data.val().start);
+        });
+ 
+      });
 
 });
