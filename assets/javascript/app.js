@@ -55,7 +55,8 @@ $(document).ready(function () {
           if(!bFoundUser)
           {
             var $errorMsg = $("<p>").text("User email address not found! Please sign up");
-            $("#mainBody").prepend($errorMsg);
+            $($errorMsg).css({'color' : 'red','font-weight' : 'bold'});
+            $("#userError").html($errorMsg);
           }
           
     });
