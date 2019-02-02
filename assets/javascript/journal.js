@@ -183,15 +183,15 @@ $(document).on("click", ".addFood", function () {
               {
                 if(isNumber(data.val().carbs))
                 {
-                    iCarbsTotal += data.val().carbs;
+                    iCarbsTotal += parseFloat( data.val().carbs );
                 }
                 if(isNumber(data.val().sugar))
                 {
-                    iSugarsTotal += data.val().sugar;
+                    iSugarsTotal += parseFloat( data.val().sugar);
                 }
                 if(isNumber(data.val().protein))
                 {
-                    iProteinTotal += data.val().protein;   
+                    iProteinTotal += parseFloat( data.val().protein );   
                 }
               }
           });
@@ -265,6 +265,8 @@ $(document).on("click", ".addFood", function () {
 
 
 });
+
+
 
 
 
