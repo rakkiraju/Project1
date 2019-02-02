@@ -175,9 +175,18 @@ $(document).on("click", ".addFood", function () {
               //console.log("The DB value is " + data.val().key);
               if(data.val().key == key)
               {
-                iCarbsTotal += data.val().carbs;
-                iSugarsTotal += data.val().sugar;
-                iProteinTotal += data.val().protein;   
+                if(isNumber(data.val().carbs))
+                {
+                    iCarbsTotal += data.val().carbs;
+                }
+                if(isNumber(data.val().sugar))
+                {
+                    iSugarsTotal += data.val().sugar;
+                }
+                if(isNumber(data.val().protein))
+                {
+                    iProteinTotal += data.val().protein;   
+                }
               }
           });
           //console.log("Came to dailyItems loop!!!");
@@ -243,6 +252,9 @@ $(document).on("click", ".addFood", function () {
             }
         });
 
+        function isNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+          }
         
 });
 
