@@ -60,6 +60,12 @@ dataRef.ref("dailyItems").on("child_added", function(snapshot) {
     console.log("The read failed: " + errorObject.code);
 });
 
+$("#signOut").on("click", function(){
+
+    event.preventDefault();
+    window.location.href = "mainPage.html";
+
+});
 
 $(document).on("click", ".addFood", function () {
 
@@ -95,16 +101,16 @@ $(document).on("click", ".addFood", function () {
             var day = dayChosen;
             var meal = mealTime;
             var carbs = results[0].nf_total_carbohydrate;
-            if(carbs=="undefined"){
-               carbs=0
+            if(carbs==null){
+               carbs="0"
             };
             var sugar = results[0].nf_sugars;
-            if(sugar=="undefined"){
-                sugar=0
+            if(sugar==null){
+                sugar="0"
             };
             var protein = results[0].nf_protein;
-            if(protein =="undefined"){
-                protein=0
+            if(protein ==null){
+                protein="0"
             };
 
             var newItem={
@@ -256,6 +262,8 @@ $(document).on("click", ".addFood", function () {
             return !isNaN(parseFloat(n)) && isFinite(n);
           }
         
+
+
 });
 
 
