@@ -22,6 +22,11 @@ $(document).ready(function () {
     var userAge = "";
     var workOut = "";
 
+    $("#onSignUp").on("click", function (event) {
+        event.preventDefault();
+        window.location.href = "loginPage.html";
+    });
+
     $("#onSignIn").on("click", function (event) {
         event.preventDefault();
         //first get the value the user entered
