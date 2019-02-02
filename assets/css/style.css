@@ -50,3 +50,13 @@ a:visited {
     border: black;
     border-width: 3px;
 }
+
+/*Main Page*/
+#mainPage{
+    position: relative;
+    text-align: right;
+}
+
+#onSignIn{
+    margin: 6px;
+}
