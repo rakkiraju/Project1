@@ -22,12 +22,58 @@ $(document).ready(function () {
     var userAge = "";
     var workOut = "";
 
+    $("#onSignUp").on("click", function (event) {
+        event.preventDefault();
+        window.location.href = "loginPage.html";
+    });
+
+    $("#onSignIn").on("click", function (event) {
+        event.preventDefault();
+        //first get the value the user entered
+        console.log("came in here!!");
+        var tempUID = $("#userEmail").val();//text();
+        tempUID = tempUID.toLowerCase();
+        var bFoundUser = false;
+        //loop through the firebase userData container
+        var udRef = dataRef.ref("weeklyStandards");
+        udRef.orderByValue().on("value", function(snapshot) {
+            snapshot.forEach(function(data) {
+                console.log("The DB value is " + data.val().key);
+                var fbKey = data.val().key;
+                fbKey = fbKey.toLowerCase();
+                if(fbKey == tempUID)
+                {
+                    //localStorage.getItem("app-userID");
+                    localStorage.setItem("app-userID", tempUID);
+                    window.location.href = "journal.html";  
+                    bFoundUser  = true;
+                }
+            //   console.log("The " + data.key + "  " + data.val().name + "---" + data.val().start);
+            });
+            
+          });
+          if(!bFoundUser)
+          {
+            var $errorMsg = $("<p>").text("User email address not found! Please sign up");
+            $($errorMsg).css({'color' : 'red','font-weight' : 'bold'});
+            $("#userError").html($errorMsg);
+          }
+          
+    });
+    
+    $("#onSignOut").on("click", function (event) {
+        event.preventDefault();
+        localStorage.removeItem('app-userID'); 
+        window.location.href = "loginPage.html";
+    });
+
     $("#onSubmit").on("click", function (event) {
         console.log("Came here!!!!");
         event.preventDefault();
 
         //store the userID
         var userId = $("#userId").val();
+        userId = userId.toLowerCase();
         localStorage.setItem("app-userID", userId);
 
         // console.log(userId);
@@ -154,4 +200,6 @@ $(document).ready(function () {
 
 
 })
+
+
 
