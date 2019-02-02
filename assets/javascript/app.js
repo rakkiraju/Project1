@@ -90,8 +90,10 @@ $(document).ready(function () {
         }
 
         //calculate weekly carbs intake
-        //formulae = 45% of weekly calorie intake
-        var iWeeklyCarbs = .45 * iWeeklyCalories;
+        //formulae = 45% of weekly calorie intake divided by 4.
+        //https://healthyeating.sfgate.com/recommended-amount-percent-carbohydrates-per-day-7287.html
+
+        var iWeeklyCarbs = (.45 * iWeeklyCalories)/4;
 
         var weeklyStandards = {
             key: userId,
@@ -123,17 +125,17 @@ $(document).ready(function () {
     });
 
     //get the db values to populate the table
-    console.log("Came to app.js !!!!");
+    //console.log("Came to app.js !!!!");
     var myUserId = localStorage.getItem("app-userID");
-    console.log("my userID from LocalStorage is " + myUserId);
+    //console.log("my userID from LocalStorage is " + myUserId);
     var wsRef = dataRef.ref("weeklyStandards");
     wsRef.orderByValue().on("value", function(snapshot) {
         snapshot.forEach(function(data) {
-            console.log("The DB value is " + data.val().key);
+            //console.log("The DB value is " + data.val().key);
             if(data.val().key == myUserId)
             {
                 var carbs1Val = $("#myTable1 #carbs1").text();
-                console.log("Came here " + data.val().key + " " + myUserId + "A" + carbs1Val + "B");
+                //console.log("Came here " + data.val().key + " " + myUserId + "A" + carbs1Val + "B");
                 var carbs = data.val().carbs;
                 var iCarbs = Math.ceil(parseInt(carbs));
                 var protein = data.val().protein;
@@ -152,3 +154,4 @@ $(document).ready(function () {
 
 
 })
+
