@@ -59,8 +59,19 @@ a:visited {
 
 #onSignIn{
     margin: 6px;
+    background-color: #008CBA;
+    border-color: #008CBA;
+    color:white;
+    padding-left: 20px;
+    padding-right: 20px;
 }
-
+#onSignOut{
+    background-color: #008CBA;
+    border-color: #008CBA;
+    color:white;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 #imageMainPage{
     display: block;
     margin-left: auto;
@@ -69,14 +80,50 @@ a:visited {
 }
 
 body{
-    background-image: url(../Pictures/mainPage.jpg);
+    height: 100vh;
+    margin-top: 35px;
+    background-position: bottom;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+    background-size: contain;
     background-size: cover;
- 
-    
+    background-color: rgba(155, 182, 250, 0.66);
+    background-image: url(../Pictures/mainPage.jpg);
+   
 
+}
+
+#quote{
+    margin: 34px;
+    margin-left: 100px;
+    margin: 90px;
+    font-family: 'Old Standard TT', serif;
+    color: rgb(56, 162, 72);
+    font-size: 48px;
+    font-style: italic;
+}
+
+#onSignUp{
+
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+    display: inline-block;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-weight: bold;
+    margin-left: 300px;
+    font-size: 18px;
+
+
+}
+
+
+
+
+#enterInfo{
+    margin: 20px;
+    margin-left: 240px;
+
+    font-family: 'Old Standard TT', serif;
+    color: rgb(70, 104, 164);
+    font-size: 18px;
 }
