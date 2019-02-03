@@ -41,13 +41,13 @@
 
 
 
-    <h1 id="journal">Journal</h1>
+    <h1 id="journalheader">Journal</h1>
     <br>
 
     <!--WEEKLY GOALS-->
 
 
-    <div class="container border">
+    <div id="goals" class="container border">
 
         <table class="goals">
             <thead>
@@ -58,7 +58,7 @@
         </table>
         <table class="table" id="myTable1" class="border">
 
-            <thead class="thead-dark">
+            <thead class="thead" id="myTable">
                 <tr>
                     <th scope="col">Carbs</th>
                     <th scope="col">Sugar</th>
@@ -79,9 +79,10 @@
 
     <!--WEEKLY JOURNAL-->
 
-    <div class="container border">
-
+    <div id="mealRecord" class="container border">
+<br>
         <h3 id="meal-record">Meal Record</h3>
+        <br>
         <div class="row">
             <div class="col-sm-3">
                 <select class=day>
@@ -117,7 +118,7 @@
 
 
 
-        <div class="card mb-4">
+        <div id="card1" class="card mb-4">
             <div class="card-header">Daily Journal</div>
             <div class="card-body">
                 <table class="table table-sm table-hover" id='journalTable'>
@@ -150,9 +151,9 @@
     <br>
 
     <!--CHART RESULTS-->
-    <div class="container border">
+    <div id="chart-result" class="container border">
 
-        <h3 id="chart-result">Chart Result</h3>
+        <h3>Chart Result</h3>
         <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
 
         <!-- <canvas id="pie-chart" width="800" height="450"></canvas> -->
