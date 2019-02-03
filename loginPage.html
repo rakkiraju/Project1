@@ -25,27 +25,30 @@
 
     <title></title>
   </head>
-
+  <body id="pageBody" >
+ 
    
   <div class="container">
-          <body>
-                                          
-              <button class="btn btn-outline-success" id="mainPage"  onclick="window.location.href='mainPage.html'">Home</button> 
-            <div class="card">
-
+    
 
 
                           <!--USER INFORMATION-->
                 <div class="card-body">
-                    <h1 id="main-info">User Information</h1>
+                    <h1 id="main-info">User Information</h1> 
+             
+           
                     <br>
 
+     
+                         
+                
 
-
-                    <!--USER ID-->
+                      <div id="bodyinfo" class="card">
+               
+                          <button class="btn btn-outline-success" id="mainPage"  onclick="window.location.href='mainPage.html'">Home</button> 
                  
                     <!--NAME-->
-
+                   
                     <div class="form-group" id="user-form">
                       <label for="userId">User ID / Email address</label>
                       <input type="email" class="form-control" id="userId" aria-describedby="emailHelp" placeholder="Enter email">
@@ -114,13 +117,15 @@
 
           
 
-           
+
 
                     
      
                   
 
 </div>
+
+
                   
 <!--Fire basw-->
 <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>

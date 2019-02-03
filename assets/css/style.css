@@ -14,11 +14,7 @@
     text-align: center;
 }
 /* General */
-.card {
-    /* font-family: 'KoHo', sans-serif; */
-    font-family: 'Old Standard TT', serif;
-    margin-top:10px;
-}
+
 
 /* Login Page Css */
 
@@ -53,8 +49,10 @@ a:visited {
 
 /*Main Page*/
 #mainPage{
-    position: relative;
+    position: fixed;
     text-align: right;
+margin-top: 10%;
+  
 }
 
 #onSignIn{
@@ -79,7 +77,7 @@ a:visited {
     width: 90%;
 }
 
-body{
+#mainBody{
     height: 100vh;
     margin-top: 35px;
     background-position: bottom;
@@ -112,12 +110,7 @@ body{
     font-weight: bold;
     margin-left: 300px;
     font-size: 18px;
-
-
 }
-
-
-
 
 #enterInfo{
     margin: 20px;
@@ -126,4 +119,66 @@ body{
     font-family: 'Old Standard TT', serif;
     color: rgb(70, 104, 164);
     font-size: 18px;
+}
+
+/* LoginPage */
+
+#main-info{
+    margin-top: 9px;
+    font-family: 'Old Standard TT', serif;
+    color: rgb(51, 53, 51);
+    font-size: 48px;
+    font-style: italic;
+
+   
+
+}
+
+#mainPage{
+    position: absolute;
+    margin-top: -9%;
+    margin-left: 88%;
+ color: antiquewhite;
+    background-color: rgb(39, 167, 210);
+    border-color: rgb(51, 169, 208);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+
+
+
+}
+
+#pageBody{
+
+    background-position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: cover;
+    background-color: rgba(157, 197, 237, 0.413);
+    background-image: url(../Pictures/eatlike.jpg);
+    padding-left: 30px;
+    
+
+}
+
+
+.card {
+    /* font-family: 'KoHo', sans-serif; */
+    font-family: 'Old Standard TT', serif;
+    margin-top:10px;
+padding: 2%;
+margin-right: 25%;
+}
+
+#bodyinfo{
+    margin-top:60px;
+    background-color: rgba(230, 237, 245, 0.633);
+}
+#onSubmit{
+    color: antiquewhite;
+    background-color: rgb(39, 167, 210);
+    border-color: rgb(51, 169, 208);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+    
 }
