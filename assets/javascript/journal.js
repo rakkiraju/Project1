@@ -261,7 +261,12 @@ $(document).on("click", ".addFood", function () {
         function isNumber(n) {
             return !isNaN(parseFloat(n)) && isFinite(n);
           }
-        
+     $(document).on("click", "#clear", function(){
+        event.preventDefault();
+        console.log(this);
+        $("#journalTable tbody > tr").remove();
+
+     })   
 
 
 });
